@@ -47,6 +47,8 @@ pipeline {
                 PATH = "${dockerHome}/bin:${env.PATH}"
             }
             steps {
+                echo ${env.PATH}
+                echo $PATH
                 script {
                     docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
