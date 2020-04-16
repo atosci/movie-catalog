@@ -43,8 +43,6 @@ pipeline {
         
         stage('Building and Pushing docker image') {
             steps {
-                echo "env.path = ${env.PATH}"
-                echo "path = ${PATH}"
                 script {
                     docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
