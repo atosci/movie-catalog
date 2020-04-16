@@ -40,14 +40,11 @@ pipeline {
             }
         }
         
-        stage('Initialize'){
+        
+        stage('Building and Pushing docker image') {
             environment{    
                 dockerHome = tool 'myDocker'
                 PATH = "${dockerHome}/bin:${env.PATH}"
-            }
-        }
-        
-        stage('Building and Pushing docker image') {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
