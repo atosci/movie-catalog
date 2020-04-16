@@ -45,6 +45,7 @@ pipeline {
             environment{    
                 dockerHome = tool 'myDocker'
                 PATH = "${dockerHome}/bin:${env.PATH}"
+                PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker:${env.PATH}"
             }
             steps {
                 script {
