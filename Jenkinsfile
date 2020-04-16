@@ -45,6 +45,7 @@ pipeline {
             environment{    
                 dockerHome = tool 'myDocker'
                 PATH = "${dockerHome}/bin:${env.PATH}"
+            }
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
