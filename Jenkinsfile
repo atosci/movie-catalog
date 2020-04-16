@@ -43,7 +43,7 @@ pipeline {
         stage('Initialize'){
             environment{    
                 dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
+                PATH = "${dockerHome}/bin:${env.PATH}"
             }
         }
         
