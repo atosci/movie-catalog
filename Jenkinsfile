@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        registry = "kwieto/test"
-        registryCredential = 'dockerhub_kwieto'
+        registry = "atosci/moviecatalog"
+        registryCredential = 'dockerhub_atosci'
     }
     agent any
     tools {
