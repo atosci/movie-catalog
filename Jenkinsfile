@@ -42,10 +42,6 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
-            environment{    
-                dockerHome = tool 'myDocker'
-                PATH = "${dockerHome}/bin:${env.PATH}"
-            }
             steps {
                 echo "env.path = ${env.PATH}"
                 echo "path = ${PATH}"
