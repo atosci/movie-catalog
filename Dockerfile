@@ -1,8 +1,7 @@
-FROM openjdk:8-jdk-alpine as build
-RUN apk add --no-cache maven
-WORKDIR /java
-COPY . /java
-RUN mvn package -Dmaven.test.skip=true
-EXPOSE 8000
+FROM openjdk:8-jre-alpine
 
-CMD ["/bin/sh", "-c", "java -Djava.security.egd=file:/dev/./urandom -jar /java/target/*.jar"]
+Expose 8081
+
+ADD target/movie-catalog-service-0.0.1-SNAPSHOT.jar .
+
+ENTRYPOINT ["java","-jar","movie-catalog-service-0.0.1-SNAPSHOT.jar"]
