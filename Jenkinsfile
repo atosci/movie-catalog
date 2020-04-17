@@ -42,8 +42,6 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
-            environment{
-            }
             steps {
                 script {
                         docker.withRegistry('', registryCredential) {
