@@ -53,7 +53,7 @@ pipeline {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                     sh "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker rmi $registry:$BUILD_NUMBER"
+                     sh '/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker rmi $registry:$BUILD_NUMBER'
                 }
             }
         }
