@@ -7,7 +7,6 @@ pipeline {
     tools {
         maven 'Maven'
         jdk 'jdk8'
-        docker 'docker'
     }
     stages {
         stage('Maven unit test') {
@@ -49,7 +48,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withServer('tcp://dockerapp:2375'){
+                    docker.withServer('tcp://40.114.174.107:2375'){
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
