@@ -62,9 +62,7 @@ pipeline {
             steps {
                 input ('Do you want to proceed?')
                 withKubeConfig([credentialsId: 'Kubeconfig_file', serverUrl: 'https://kubeclustercontinuousintegration-dns-c66cbf56.hcp.westeurope.azmk8s.io:443']){
-                    sh 'kubectl apply -f ${JOB_NAME}_deploy.yaml -n develop'
-                    sh 'echo "deployment done, creating service now" '
-                    sh 'kubectl apply -f ${JOB_NAME}_service.yaml -n develop'
+                    sh 'kubectl apply -f movieCatalog_deploy.yaml -n develop'
                   }
             }
         }
