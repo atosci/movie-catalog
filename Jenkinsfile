@@ -44,10 +44,12 @@ pipeline {
         stage('Building and Pushing docker image') {
             steps {
                 script {
+                    docker.withServer('tcp://dind-svc:80'){
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
+                    }
                     }
                      sh "docker rmi $registry:$BUILD_NUMBER"
                 }
