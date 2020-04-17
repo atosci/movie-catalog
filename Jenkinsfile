@@ -44,11 +44,12 @@ pipeline {
         stage('Building and Pushing docker image') {
             environment{
                 dockerHome = tool 'docker'
-                //PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin:$PATH"
+                PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin:$PATH"
             }
             steps {
+                echo '$PWD'
                 script {
-                    docker.withRegistry('', registryCredential) {
+                        docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
