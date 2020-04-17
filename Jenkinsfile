@@ -58,7 +58,6 @@ pipeline {
                 }
             }
         }
-        
         stage("Deploy on k8s") {
             steps {
                 input ('Do you want to proceed?')
