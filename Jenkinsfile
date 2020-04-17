@@ -47,7 +47,7 @@ pipeline {
                 PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin:$PATH"
             }
             steps {
-                echo '$PWD'
+                echo '${PWD}'
                 script {
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
