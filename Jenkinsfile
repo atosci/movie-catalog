@@ -52,9 +52,9 @@ pipeline {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
+                        sh "docker rmi $registry:$BUILD_NUMBER"
                         }
                     }
-                    sh "docker rmi $registry:$BUILD_NUMBER"
                 }
             }
         }
