@@ -49,7 +49,7 @@ pipeline {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                    sh "docker rmi $registry:$BUILD_NUMBER"
+           
                 }
             }
         }
