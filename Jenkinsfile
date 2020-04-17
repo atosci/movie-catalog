@@ -48,12 +48,13 @@ pipeline {
             }
             steps {
                 script {
+                    echo '$PWD'
                     /var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                     sh "~/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker rmi $registry:$BUILD_NUMBER"
+                     sh "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker rmi $registry:$BUILD_NUMBER"
                 }
             }
         }
