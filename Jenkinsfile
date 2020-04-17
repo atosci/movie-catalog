@@ -31,9 +31,6 @@ pipeline {
             }
         }
         stage("Quality Gate") {
-            environment {
-                dockerHome = tool 'docker'
-            }
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
@@ -45,6 +42,10 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
+            environment {
+                dockerHome = tool 'docker'
+                PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin/docker:${env.PATH}"
+            }
             steps {
                 script {
                     docker.withServer('tcp://dockerapp:2375'){
