@@ -42,6 +42,8 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
+            environment{
+                dockerHome = tool 'docker'
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
