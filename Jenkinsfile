@@ -42,18 +42,14 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
-            environment{
-                dockerHome = tool 'myDocker'
-                PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin:$PATH"
-            }
             steps {
                 script {
-                    /var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker.withRegistry('', registryCredential) {
+                        docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                     sh '/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker rmi $registry:$BUILD_NUMBER'
+                     sh "docker rmi $registry:$BUILD_NUMBER"
                 }
             }
         }
