@@ -44,14 +44,13 @@ pipeline {
         stage('Building and Pushing docker image') {
             steps {
                 script {
-                    docker.withServer('tcp://40.114.174.107:2375'){
-                        docker.withRegistry('', registryCredential) {
+                    docker.withServer('tcp://40.114.174.107:2375')
+                    docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
-                    }
-                     sh "docker rmi $registry:$BUILD_NUMBER"
+                    sh "docker rmi $registry:$BUILD_NUMBER"
                 }
             }
         }
