@@ -47,11 +47,13 @@ pipeline {
             }
             steps {
                 script {
+                    docker.withServer('tcp://dockerapp:2375', '') {                    
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
                         dockerImage.push('latest')
                         sh "docker rmi $registry:$BUILD_NUMBER"
+                        }
                     }
                 }
             }
