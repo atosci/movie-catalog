@@ -44,7 +44,7 @@ pipeline {
         stage('Building and Pushing docker image') {
             steps {
                 script {
-                    docker.withServer('tcp://dind-svc:80'){
+                    docker.withServer('tcp://10.0.52.110:80'){
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
