@@ -48,7 +48,6 @@ pipeline {
             }
             steps {
                 script {
-                    echo '$PWD'
                     /var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/myDocker/bin/docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
