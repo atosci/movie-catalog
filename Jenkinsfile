@@ -44,7 +44,7 @@ pipeline {
         stage('Building and Pushing docker image') {
             steps {
                 script {
-                    docker.withServer('tcp://dockerapp:3275'){
+                    docker.withServer('tcp://dockerapp:2375'){
                         docker.withRegistry('', registryCredential) {
                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
                         dockerImage.push()
