@@ -42,10 +42,6 @@ pipeline {
         
         
         stage('Building and Pushing docker image') {
-            environment {
-                dockerHome = tool 'docker'
-                PATH = "/var/jenkins_home/tools/org.jenkinsci.plugins.docker.commons.tools.DockerTool/docker/bin:${env.PATH}"
-            }
             steps {
                 script {
                     dockertwee.withServer('tcp://40.114.174.107:2375'){
