@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "atosci/moviecatalog"
         registryCredential = 'dockerhub_atosci'
-        jobName = ${JOB_NAME}
+        jobName = "${JOB_NAME}"
     }
     agent any
     tools {
