@@ -63,8 +63,8 @@ pipeline {
             steps {
                 input ('Do you want to proceed?')
                 withKubeConfig([credentialsId: 'Kubeconfig_file', serverUrl: 'https://kubeclustercontinuousintegration-dns-c66cbf56.hcp.westeurope.azmk8s.io:443']){
-                    sh 'kubectl apply -f ${JOB_NAME}_deploy.yaml -n ${GIT_BRANCH} '
-                    sh 'kubectl apply -f ${JOB_NAME}_service.yaml -n ${GIT_BRANCH} '
+                    sh 'kubectl apply -f ${JOB_NAME}_deploy.yaml -n ${BRANCH_NAME} '
+                    sh 'kubectl apply -f ${JOB_NAME}_service.yaml -n ${BRANCH_NAME} '
                   }
             }
         }
