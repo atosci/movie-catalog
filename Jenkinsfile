@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "atosci/moviecatalog"
         registryCredential = 'dockerhub_atosci'
-        jobName = "${JOB_NAME}"
+        branchName = "${BRANCH_NAME}"
     }
     agent any
     tools {
@@ -12,6 +12,7 @@ pipeline {
     stages {
         stage('Maven unit test') {
             steps {
+                 echo branchName
                  echo "current build number: ${currentBuild.number}"
                  sh 'mvn -Dmaven.test.failure.ignore=true install'
                  sh 'mvn compile'
@@ -49,7 +50,7 @@ pipeline {
             steps {
                script {
                    
-                   if ( jobName == 'develop' || jobName == 'hotfix' ) {
+                   if ( branchName == 'develop' || branchName == 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
                             def dockerImage = docker.build registry + ":$BUILD_NUMBER"
