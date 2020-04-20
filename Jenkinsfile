@@ -2,6 +2,7 @@ pipeline {
     environment {
         registry = "atosci/moviecatalog"
         registryCredential = 'dockerhub_atosci'
+        jobName = ${JOB_NAME}
     }
     agent any
     tools {
@@ -47,7 +48,8 @@ pipeline {
             }
             steps {
                script {
-                   if ( ${JOB_NAME} == 'develop' || 'hotfix' ) {
+                   
+                   if ( jobName == 'develop' || jobName == 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
                             def dockerImage = docker.build registry + ":$BUILD_NUMBER"
