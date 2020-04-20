@@ -46,16 +46,16 @@ pipeline {
                 dockerHome = tool 'docker'
             }
             steps {
-                if ( ${JOB_NAME} == 'develop' || 'hotfix' ) {
-                    script {
+               script {
+                   if ( ${JOB_NAME} == 'develop' || 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
-                         def dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                         dockerImage.push()
-                         dockerImage.push('latest')
-                         sh "docker rmi $registry:$BUILD_NUMBER"
+                            def dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                            dockerImage.push()
+                            dockerImage.push('latest')
+                            sh "docker rmi $registry:$BUILD_NUMBER"
                             }
-                        }
+                         }
                     }
                 }
             }
