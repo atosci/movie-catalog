@@ -19,5 +19,3 @@ spec:
         image: atosci/moviecatalog
         ports:
         - containerPort: 80
-                 
-                 
