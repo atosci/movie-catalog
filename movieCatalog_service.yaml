@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: movie-catalog
+spec:
+  selector:
+    type: LoadBalancer
+    app: movie-catalog
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
