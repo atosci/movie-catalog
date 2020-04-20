@@ -2,9 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: movie-catalog
-  labels:
-    app: movie-catalog
 spec:
-    name: movie-catalog
   selector:
     app: movie-catalog
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: http
