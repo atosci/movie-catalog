@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "atosci/moviecatalog"
         registryCredential = 'dockerhub_atosci'
-        jobName = "${JOB_NAME}"
+
     }
     agent any
     tools {
@@ -48,7 +48,7 @@ pipeline {
             }
             steps {
                script {
-                   
+                   def jobName = "${JOB_NAME}"
                    if ( jobName == 'develop' || jobName == 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
