@@ -15,7 +15,6 @@ pipeline {
                  sh 'mvn -Dmaven.test.failure.ignore=true install'
                  sh 'mvn compile'
                  sh 'mvn test'
-                 echo "${BRANCH_NAME}"
             }
         }
         stage('Sonarqube analysis') {
