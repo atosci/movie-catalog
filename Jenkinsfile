@@ -48,8 +48,7 @@ pipeline {
                 dockerHome = tool 'docker'
             }
             steps {
-               script {
-                   
+               script {          
                    if ( branchName == 'develop' || branchName == 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
