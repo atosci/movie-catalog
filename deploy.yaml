@@ -18,6 +18,6 @@ spec:
       - name: movie-catalog
         image: atosci/movie-catalog
         ports:
-        - containerPort: 80
+        - containerPort: 8084
                  
                  
