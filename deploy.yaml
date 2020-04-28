@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: movie-catalog
-        image: atosci/moviecatalog
+        image: atosci/movie-catalog
         ports:
         - containerPort: 80
                  
