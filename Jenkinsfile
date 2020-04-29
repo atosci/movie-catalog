@@ -74,9 +74,9 @@ pipeline {
         }
         stage("gotta git git git") {
             steps {
-                sh 'git add .'
-                sh 'git commit -m "merge with release"'
-                sh 'git push origin release'
+                withCredentials([usernamePassword(credentialsId: 'atosCI_git', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/atosci/mvoie-catalog.git')
+                    } 
             }
         }
     }
