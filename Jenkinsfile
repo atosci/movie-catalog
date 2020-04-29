@@ -70,7 +70,6 @@ pipeline {
                     sh 'kubectl apply -f deploy.yaml -n ${BRANCH_NAME} '
                     sh 'kubectl apply -f service.yaml -n ${BRANCH_NAME} '
                     sh 'kubectl set image deployment/${app} ${app}=atosci/${app}:$BUILD_NUMBER --record'
-'
                   }
             }
         }
