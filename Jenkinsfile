@@ -75,7 +75,7 @@ pipeline {
         stage("gotta git git git") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'atosCI_git', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/atosci/mvoie-catalog.git')
+                        sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/atosci/movie-catalog.git')
                     } 
             }
         }
