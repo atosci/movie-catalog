@@ -72,5 +72,12 @@ pipeline {
                   }
             }
         }
+        stage("gotta git git git") {
+            steps {
+                sh 'git add .'
+                sh 'git commit -m "merge with release"'
+                sh 'git push origin release'
+            }
+        }
     }
 }
