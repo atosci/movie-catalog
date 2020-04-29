@@ -1,9 +1,9 @@
 pipeline {
     environment {
-        registry = "atosci/movie-catalog"
+        app = "movie-catalog"
+        registry = "atosci/${app}"
         registryCredential = 'dockerhub_atosci'
         branchName = "${BRANCH_NAME}"
-        app = "movie-catalog"
     }
     agent any
     tools {
