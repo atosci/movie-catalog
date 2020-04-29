@@ -75,6 +75,8 @@ pipeline {
         stage("gotta git git git") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'atosCI_git', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh('git remote add origin github.com/atosci/movie-catalog.git')
+                        sh('git add .')
                         sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/atosci/movie-catalog.git release')
                     } 
             }
