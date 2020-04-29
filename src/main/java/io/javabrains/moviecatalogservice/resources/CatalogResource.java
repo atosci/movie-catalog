@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/catalog2")
+@RequestMapping("/catalog")
 public class CatalogResource {
 
     @Autowired
