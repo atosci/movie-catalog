@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: movie-catalog
-        image: atosci/movie-catalog
+        image: atosci/movie-catalog:latest
+        imagePullPolicy: Always 
         ports:
         - containerPort: 80
                  

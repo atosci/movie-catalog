@@ -3,6 +3,7 @@ pipeline {
         registry = "atosci/movie-catalog"
         registryCredential = 'dockerhub_atosci'
         branchName = "${BRANCH_NAME}"
+        app = "movie-catalog"
     }
     agent any
     tools {
@@ -12,7 +13,6 @@ pipeline {
     stages {
         stage('Maven unit test') {
             steps {
-                 echo branchName
                  echo "current build number: ${currentBuild.number}"
                  sh 'mvn -Dmaven.test.failure.ignore=true install'
                  sh 'mvn compile'
@@ -68,6 +68,7 @@ pipeline {
                 withKubeConfig([credentialsId: 'Kubeconfig_file', serverUrl: 'https://kubeclustercontinuousintegration-dns-c66cbf56.hcp.westeurope.azmk8s.io:443']){
                     sh 'kubectl apply -f deploy.yaml -n ${BRANCH_NAME} '
                     sh 'kubectl apply -f service.yaml -n ${BRANCH_NAME} '
+                    sh 'kubectl set image deployment/${app} ${app}=atosci/${app}:latest -n ${BRANCH_NAME} --record'
                   }
             }
         }
