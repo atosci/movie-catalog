@@ -29,7 +29,7 @@ public class CatalogResource {
     @RequestMapping("/{userId}")
     public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
 
-        UserRating userRating = restTemplate.getForObject("10.0.101.33/ratingsdata/user/" + userId, UserRating.class);
+        UserRating userRating = restTemplate.getForObject("http://10.0.101.33/ratingsdata/user/" + userId, UserRating.class);
 
         return userRating.getRatings().stream()
                 .map(rating -> {
