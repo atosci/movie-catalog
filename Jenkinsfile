@@ -76,7 +76,6 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'atosCI_git', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh('git add .')
-                        sh('git commit -m "merge"')
                         sh('git push origin release')
                     } 
             }
