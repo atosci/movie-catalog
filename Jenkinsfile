@@ -13,7 +13,6 @@ pipeline {
     stages {
         stage('Maven unit test') {
             steps {
-                 echo branchName
                  echo "current build number: ${currentBuild.number}"
                  sh 'mvn -Dmaven.test.failure.ignore=true install'
                  sh 'mvn compile'
