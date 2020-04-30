@@ -70,7 +70,7 @@ pipeline {
                     sh 'kubectl apply -f service.yaml -n ${BRANCH_NAME} '
                     sh 'kubectl delete pods -l app=${app} -n ${BRANCH_NAME}'
                     echo ' IP adres for develop enviroment of movie application: '
-                    sh 'kubectl get svc movie-catalog -n $branch '
+                    sh 'kubectl get svc movie-catalog -n ${BRANCH_NAME} '
                   }
             }
         }
