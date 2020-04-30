@@ -1,6 +1,7 @@
 pipeline {
     environment {
-        registry = "atosci/moviecatalog"
+        app = "movie-catalog"
+        registry = "atosci/${app}"
         registryCredential = 'dockerhub_atosci'
         branchName = "${BRANCH_NAME}"
     }
@@ -12,7 +13,6 @@ pipeline {
     stages {
         stage('Maven unit test') {
             steps {
-                 echo branchName
                  echo "current build number: ${currentBuild.number}"
                  sh 'mvn -Dmaven.test.failure.ignore=true install'
                  sh 'mvn compile'
@@ -48,8 +48,7 @@ pipeline {
                 dockerHome = tool 'docker'
             }
             steps {
-               script {
-                   
+               script {          
                    if ( branchName == 'develop' || branchName == 'hotfix' ) {
                      docker.withServer('tcp://dockerapp:2375', '') {                    
                          docker.withRegistry('', registryCredential) {
@@ -67,9 +66,18 @@ pipeline {
             steps {
                 input ('Do you want to proceed?')
                 withKubeConfig([credentialsId: 'Kubeconfig_file', serverUrl: 'https://kubeclustercontinuousintegration-dns-c66cbf56.hcp.westeurope.azmk8s.io:443']){
-                    sh 'kubectl apply -f movieCatalog_deploy.yaml -n ${BRANCH_NAME} '
-                    sh 'kubectl apply -f movieCatalog_service.yaml -n ${BRANCH_NAME} '
+                    sh 'kubectl apply -f deploy.yaml -n ${BRANCH_NAME} '
+                    sh 'kubectl apply -f service.yaml -n ${BRANCH_NAME} '
+                    sh 'kubectl delete pods -l app=${app} -n ${BRANCH_NAME}'
                   }
+            }
+        }
+        stage("gotta git git git") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'atosCI_git', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh('git add .')
+                        sh('git push origin release')
+                    } 
             }
         }
     }
