@@ -1,7 +1,5 @@
 package io.javabrains.moviecatalogservice.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Rating {
     private String source;
     private String value;

@@ -10,6 +10,5 @@ public class CatalogResourceTest {
 
     @Test
     public void GetCatalog() {
-
     }
 }

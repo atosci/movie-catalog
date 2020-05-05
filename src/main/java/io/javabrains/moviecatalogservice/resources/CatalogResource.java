@@ -33,8 +33,6 @@ public class CatalogResource {
             // get ratings
             RatingList ratingList = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class);
 
-
-
             catalogItem.setMovie(movie);
             catalogItem.setRatingList(ratingList);
         }
