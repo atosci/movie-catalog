@@ -24,15 +24,18 @@ public class CatalogResource {
     @GetMapping(path = "/{movieTitle}")
     public CatalogItem getCatalog(@PathVariable("movieTitle") String movieTitle) {
         CatalogItem catalogItem = new CatalogItem();
-        RestTemplate restTemplate = new RestTemplate();
-        // get movie
-        Movie movie = restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class);
+        RestTemplate restTemplate;
+        if (movieTitle != null) {
+            restTemplate = new RestTemplate();
+            // get movie
+            Movie movie = restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class);
 
-        // get ratings
-        RatingList ratingList = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class);
+            // get ratings
+            RatingList ratingList = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class);
 
-        catalogItem.setMovie(movie);
-        catalogItem.setRatingList(ratingList);
+            catalogItem.setMovie(movie);
+            catalogItem.setRatingList(ratingList);
+        }
 
         return  catalogItem;
     }
