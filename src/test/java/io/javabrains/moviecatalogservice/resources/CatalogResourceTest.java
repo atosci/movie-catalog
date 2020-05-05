@@ -10,5 +10,7 @@ public class CatalogResourceTest {
 
     @Test
     public void GetCatalog() {
+        catalogResource = new CatalogResource();
+
     }
 }
