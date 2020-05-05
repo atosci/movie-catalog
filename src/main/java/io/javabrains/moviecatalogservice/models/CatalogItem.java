@@ -9,12 +9,6 @@ public class CatalogItem {
 
     }
 
-    // constructor
-    public CatalogItem(Movie movie, RatingList ratingList) {
-        this.movie = movie;
-        this.ratingList = ratingList;
-    }
-
     public Movie getMovie() {
         return movie;
     }
