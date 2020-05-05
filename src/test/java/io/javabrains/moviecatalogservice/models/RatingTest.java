@@ -19,4 +19,14 @@ public class RatingTest {
         Assert.assertEquals(expected, rating.getValue());
     }
 
+    @Test
+    public void validateRatingConstructorWithParameters() {
+        String value = "value_001";
+        String source = "source_001";
+        Rating rating = new Rating(source, value);
+
+        Assert.assertEquals(value, rating.getValue());
+        Assert.assertEquals(source, rating.getSource());
+    }
+
 }
