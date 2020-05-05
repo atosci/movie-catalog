@@ -7,8 +7,7 @@ public class Rating {
     private String value;
 
     // default constructor
-    public Rating() {
-    }
+    public Rating() { }
 
     public Rating(String source, String value) {
         this.source = source;

@@ -7,9 +7,7 @@ public class RatingList {
     private List<Rating> ratings;
 
     // default constructor
-    public RatingList() {
-
-    }
+    public RatingList() { }
 
     public String getMovieTitle() {
         return movieTitle;
