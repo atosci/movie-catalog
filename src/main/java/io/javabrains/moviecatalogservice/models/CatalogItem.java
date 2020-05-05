@@ -1,37 +1,34 @@
 package io.javabrains.moviecatalogservice.models;
 
 public class CatalogItem {
-    private String name;
-    private String desc;
-    private int rating;
+    private Movie movie;
+    private RatingList ratingList;
 
-    public CatalogItem(String name, String desc, int rating) {
-        this.name = name;
-        this.desc = desc;
-        this.rating = rating;
+    // empty constructor
+    public CatalogItem() {
+
     }
 
-    public String getName() {
-        return name;
+    // constructor
+    public CatalogItem(Movie movie, RatingList ratingList) {
+        this.movie = movie;
+        this.ratingList = ratingList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public String getDesc() {
-        return desc;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public RatingList getRatingList() {
+        return ratingList;
     }
 
-    public int getRating() {
-        return rating;
+    public void setRatingList(RatingList ratingList) {
+        this.ratingList = ratingList;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 }

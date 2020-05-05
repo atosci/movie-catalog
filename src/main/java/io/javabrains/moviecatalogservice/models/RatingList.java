@@ -1,19 +1,22 @@
 package io.javabrains.moviecatalogservice.models;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class UserRating {
-
-    private String userId;
+public class RatingList {
+    private String movieTitle;
     private List<Rating> ratings;
 
-    public String getUserId() {
-        return userId;
+    // default constructor
+    public RatingList() {
+
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
     public List<Rating> getRatings() {
@@ -23,5 +26,4 @@ public class UserRating {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
-
 }
