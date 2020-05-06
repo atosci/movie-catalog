@@ -3,6 +3,7 @@ package io.atos.moviecatalogservice.resources;
 import com.google.gson.Gson;
 import io.atos.moviecatalogservice.models.CatalogItem;
 import io.atos.moviecatalogservice.models.Movie;
+import io.atos.moviecatalogservice.models.Rating;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,17 @@ public class CatalogController {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        CatalogItem response = restTemplate.getForObject("http://localhost/catalog/" + title, CatalogItem.class);
+        CatalogItem catalogItem = restTemplate.getForObject("http://localhost/catalog/" + title, CatalogItem.class);
 
         Gson gson = new Gson();
 
-        model.addAttribute("movie", response);
+        model.addAttribute("movie", catalogItem.getMovie());
 
-        return gson.toJson(response);
+
+
+        model.addAttribute("rating", catalogItem.getRatingList().getRatings());
+
+        return "index";
     }
 
 }

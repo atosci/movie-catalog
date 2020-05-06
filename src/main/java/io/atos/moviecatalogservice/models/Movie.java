@@ -7,6 +7,7 @@ public class Movie {
     private String Genre;
     private String Director;
     private String Actors;
+    private String Poster;
 
     public Movie() { }
 
@@ -34,6 +35,10 @@ public class Movie {
         return Actors;
     }
 
+    public String getPoster() {
+        return Poster;
+    }
+
     public void setTitle(String title) {
         Title = title;
     }
@@ -56,5 +61,9 @@ public class Movie {
 
     public void setActors(String actors) {
         Actors = actors;
+    }
+
+    public void setPoster(String poster) {
+        Poster = poster;
     }
 }
