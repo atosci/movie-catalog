@@ -22,7 +22,7 @@ public class CatalogResource {
     public CatalogItem getCatalog(@PathVariable("movieTitle") String movieTitle) {
         CatalogItem catalogItem = new CatalogItem();
         RestTemplate restTemplate;
-        
+
         if (movieTitle.length() != 0 ) {
             restTemplate = new RestTemplate();
             catalogItem.setMovie(restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class));
