@@ -14,8 +14,5 @@ public class CatalogResourceTest {
         catalogResource = new CatalogResource();
         String movieTitle = "Sissi";
 
-
-        CatalogItem result = catalogResource.getCatalog(movieTitle);
-
     }
 }
