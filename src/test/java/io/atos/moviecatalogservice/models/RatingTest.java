@@ -1,6 +1,5 @@
-package io.javabrains.moviecatalogservice.models;
+package io.atos.moviecatalogservice.models;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,10 +1,9 @@
-package io.javabrains.moviecatalogservice.resources;
+package io.atos.moviecatalogservice.resources;
 
-import io.javabrains.moviecatalogservice.models.CatalogItem;
+import io.atos.moviecatalogservice.models.CatalogItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 
 public class CatalogResourceTest {

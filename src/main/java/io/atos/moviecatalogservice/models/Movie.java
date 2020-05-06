@@ -1,4 +1,4 @@
-package io.javabrains.moviecatalogservice.models;
+package io.atos.moviecatalogservice.models;
 
 public class Movie {
     private String Title;

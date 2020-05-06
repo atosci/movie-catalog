@@ -1,4 +1,4 @@
-package io.javabrains.moviecatalogservice.models;
+package io.atos.moviecatalogservice.models;
 
 import org.junit.Assert;
 import org.junit.Test;

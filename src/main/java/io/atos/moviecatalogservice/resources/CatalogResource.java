@@ -1,8 +1,8 @@
-package io.javabrains.moviecatalogservice.resources;
+package io.atos.moviecatalogservice.resources;
 
-import io.javabrains.moviecatalogservice.models.CatalogItem;
-import io.javabrains.moviecatalogservice.models.Movie;
-import io.javabrains.moviecatalogservice.models.RatingList;
+import io.atos.moviecatalogservice.models.RatingList;
+import io.atos.moviecatalogservice.models.CatalogItem;
+import io.atos.moviecatalogservice.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +25,8 @@ public class CatalogResource {
         
         if (movieTitle.length() != 0 ) {
             restTemplate = new RestTemplate();
-            catalogItem.setMovie(restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class));
-            catalogItem.setRatingList(restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class));
+            catalogItem.setMovie(restTemplate.getForObject("http://localhost:8080/movies/" + movieTitle, Movie.class));
+            catalogItem.setRatingList(restTemplate.getForObject("http://localhost:8081/ratingsdata/user/" + movieTitle, RatingList.class));
         }
 
         return  catalogItem;
