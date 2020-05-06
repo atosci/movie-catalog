@@ -23,7 +23,7 @@ public class CatalogResource {
         CatalogItem catalogItem = new CatalogItem();
         RestTemplate restTemplate;
         
-        if (movieTitle.length() != 0 ) {
+        if (movieTitle.length() > 0 ) {
             restTemplate = new RestTemplate();
             catalogItem.setMovie(restTemplate.getForObject("http://localhost:8080/movies/" + movieTitle, Movie.class));
             catalogItem.setRatingList(restTemplate.getForObject("http://localhost:8081/ratingsdata/user/" + movieTitle, RatingList.class));
