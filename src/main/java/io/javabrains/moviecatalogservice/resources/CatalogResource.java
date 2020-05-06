@@ -2,6 +2,7 @@ package io.javabrains.moviecatalogservice.resources;
 
 import io.javabrains.moviecatalogservice.models.CatalogItem;
 import io.javabrains.moviecatalogservice.models.Movie;
+import io.javabrains.moviecatalogservice.models.Rating;
 import io.javabrains.moviecatalogservice.models.RatingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +24,13 @@ public class CatalogResource {
         CatalogItem catalogItem = new CatalogItem();
         RestTemplate restTemplate;
 
-        if (movieTitle.length() != 0 ) {
+        if (movieTitle.length() > 0 ) {
             restTemplate = new RestTemplate();
-            catalogItem.setMovie(restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class));
-            catalogItem.setRatingList(restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class));
+            Movie movie = restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class);
+            RatingList ratingList = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class);
+
+            catalogItem.setMovie(movie);
+            catalogItem.setRatingList(ratingList);
         }
 
         return  catalogItem;
