@@ -33,4 +33,28 @@ public class Movie {
     public String getActors() {
         return Actors;
     }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setPlot(String plot) {
+        Plot = plot;
+    }
+
+    public void setYear(String year) {
+        Year = year;
+    }
+
+    public void setGenre(String genre) {
+        Genre = genre;
+    }
+
+    public void setDirector(String director) {
+        Director = director;
+    }
+
+    public void setActors(String actors) {
+        Actors = actors;
+    }
 }

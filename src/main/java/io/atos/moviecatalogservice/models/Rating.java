@@ -1,30 +1,30 @@
 package io.atos.moviecatalogservice.models;
 
 public class Rating {
-    private String source;
-    private String value;
+    private String Source;
+    private String Value;
 
     // default constructor
     public Rating() { }
 
     public Rating(String source, String value) {
-        this.source = source;
-        this.value = value;
+        Source = source;
+        Value = value;
     }
 
     public String getSource() {
-        return source;
+        return Source;
     }
 
     public void setSource(String source) {
-        this.source = source;
+        this.Source = source;
     }
 
     public String getValue() {
-        return value;
+        return Value;
     }
 
     public void setValue(String value) {
-        this.value = value;
+        this.Value = value;
     }
 }

@@ -1,5 +1,6 @@
 package io.atos.moviecatalogservice.resources;
 
+import com.google.gson.Gson;
 import io.atos.moviecatalogservice.models.RatingList;
 import io.atos.moviecatalogservice.models.CatalogItem;
 import io.atos.moviecatalogservice.models.Movie;
@@ -22,11 +23,21 @@ public class CatalogResource {
     public CatalogItem getCatalog(@PathVariable("movieTitle") String movieTitle) {
         CatalogItem catalogItem = new CatalogItem();
         RestTemplate restTemplate;
-        
+
         if (movieTitle.length() > 0 ) {
             restTemplate = new RestTemplate();
-            catalogItem.setMovie(restTemplate.getForObject("http://localhost:8080/movies/" + movieTitle, Movie.class));
-            catalogItem.setRatingList(restTemplate.getForObject("http://localhost:8081/ratingsdata/user/" + movieTitle, RatingList.class));
+
+            //TODO change url to remote url
+            String movieResponse = restTemplate.getForObject("http://localhost:8080/movies/" + movieTitle, String.class);
+            String ratingResponse = restTemplate.getForObject("http://localhost:8081/ratingsdata/user/" + movieTitle, String.class);
+
+            Gson gson = new Gson();
+
+            Movie movie = gson.fromJson(movieResponse, Movie.class);
+            RatingList ratingList = gson.fromJson(ratingResponse, RatingList.class);
+
+            catalogItem.setMovie(movie);
+            catalogItem.setRatingList(ratingList);
         }
 
         return  catalogItem;
