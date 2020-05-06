@@ -22,16 +22,11 @@ public class CatalogResource {
     public CatalogItem getCatalog(@PathVariable("movieTitle") String movieTitle) {
         CatalogItem catalogItem = new CatalogItem();
         RestTemplate restTemplate;
+        
         if (movieTitle.length() != 0 ) {
             restTemplate = new RestTemplate();
-            // get movie
-            Movie movie = restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class);
-
-            // get ratings
-            RatingList ratingList = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class);
-
-            catalogItem.setMovie(movie);
-            catalogItem.setRatingList(ratingList);
+            catalogItem.setMovie(restTemplate.getForObject("http://movie-info/movies/" + movieTitle, Movie.class));
+            catalogItem.setRatingList(restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, RatingList.class));
         }
 
         return  catalogItem;
