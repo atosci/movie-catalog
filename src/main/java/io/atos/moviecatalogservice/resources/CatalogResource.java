@@ -29,9 +29,8 @@ public class CatalogResource {
         if (movieTitle.length() > 0 ) {
             restTemplate = new RestTemplate();
 
-            //TODO change url to remote url
-            String movieResponse = restTemplate.getForObject("http://localhost:8080/movies/" + movieTitle, String.class);
-            String ratingResponse = restTemplate.getForObject("http://localhost:8081/ratingsdata/user/" + movieTitle, String.class);
+            String movieResponse = restTemplate.getForObject("http://movie-info/movies/" + movieTitle, String.class);
+            String ratingResponse = restTemplate.getForObject("http://movie-rating/ratingsdata/user/" + movieTitle, String.class);
 
             Gson gson = new Gson();
 
