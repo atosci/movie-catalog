@@ -16,7 +16,7 @@ import java.util.*;
 public class CatalogController {
 
     @GetMapping("/{title}")
-    public String index(Model model, @PathVariable("title") String title){
+    public String index(@PathVariable("title") String title, Model model){
 
         RestTemplate restTemplate = new RestTemplate();
 
