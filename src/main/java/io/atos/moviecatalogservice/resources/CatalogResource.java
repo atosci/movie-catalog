@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.swing.tree.ExpandVetoException;
-
+/**
+ * @author Mohamed El Kawakibi
+ * @author Puck School
+ */
 @RestController
 @RequestMapping("/catalog")
 public class CatalogResource {
@@ -21,6 +23,10 @@ public class CatalogResource {
     @Autowired
     WebClient.Builder webClientBuilder;
 
+    /** Gets a CatalogItem representing information about a movie and its ratings
+     * @param movieTitle A String representing the title of movie
+     * @return A CatalogItem representing all the information about the movie and its ratings
+     */
     @GetMapping(path = "/{movieTitle}")
     public CatalogItem getCatalog(@PathVariable("movieTitle") String movieTitle) {
         CatalogItem catalogItem = new CatalogItem();
